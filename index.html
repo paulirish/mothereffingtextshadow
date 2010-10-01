@@ -1,5 +1,5 @@
 <!doctype html>
-<html> 
+<html>
 <meta charset=utf-8 />
 
 <title>MOTHER EFFING TEXT-SHADOW</title>
@@ -8,16 +8,16 @@
 <!--
 
   MADE BY PAUL IRISH
-  
-  
+
+
   input type=color OH SHIT YES I DID.
-  
-  
+
+
   all <3 goes to david desandro, who popularized this and many other amazing things.
 
 -->
 
-<style> 
+<style>
 
 
 
@@ -36,19 +36,19 @@ body { background: #999; text-align: center; font-family: 'ballterminals'; }
 h1 { margin: 200px  auto 0; max-width: 900px;  font-size: 90px;  color: fuchsia; text-align: center; }
 fieldset { border: 0; margin: 0; padding: 0; width: 400px; height: 170px; position: absolute; left: 50%; top: 0px; margin-left: -200px;}
 /* */
-input[type='range'], .fd-slider { position: absolute !important; left: 50%; top: 80px; width: 100px; 
+input[type='range'], .fd-slider { position: absolute !important; left: 50%; top: 80px; width: 100px;
 /* */
-  -webkit-transform: rotate(45deg); 
-  -moz-transform: rotate(45deg); 
-  -o-transform: rotate(45deg); 
-  transform: rotate(45deg); 
-   
-  -webkit-transform-origin: 0 50%; 
-  -moz-transform-origin: 0 50%; 
-  -o-transform-origin: 0 50%; 
-  transform-origin: 0 50%; 
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  transform: rotate(45deg);
+
+  -webkit-transform-origin: 0 50%;
+  -moz-transform-origin: 0 50%;
+  -o-transform-origin: 0 50%;
+  transform-origin: 0 50%;
 /* */
-} 
+}
 input[type='range']:nth-child(2), #fd-slider-lenSW { -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); }
 input[type='range']:nth-child(3), #fd-slider-lenNW { -webkit-transform: rotate(225deg); -moz-transform: rotate(225deg); -o-transform: rotate(225deg); transform: rotate(225deg); }
 input[type='range']:nth-child(4), #fd-slider-lenNE { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); }
@@ -80,12 +80,12 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
   <h1 contenteditable>MOTHER EFFING TEXT-SHADOW</h1>
 
   <textarea></textarea>
-  
+
   <script>
-  
+
   var h1 = document.querySelector('h1');
-  
-  
+
+
   // tell unsupporting browsers to FUCK OFF
   if (!'textShadow' in document.body.style){
     document.querySelector('fieldset').style.display = 'none';
@@ -114,17 +114,17 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
     NW : { x: -1, y: -1},
     NE : { x: 1 , y: -1}
   };
-  
+
   var direction = 'SE';
 
 
-  [].forEach.call( document.querySelectorAll('input[type=range]') , function(elem, i){
+  [].forEach.call( document.querySelectorAll('input[type="range"]') , function(elem, i){
 
     elem.addEventListener('change',function(e){
 
       // reset so we dont do multiple directions
       if (!wackyMode){
-        [].forEach.call( document.querySelectorAll('input[type=range]') , function(slider, i){
+        [].forEach.call( document.querySelectorAll('input[type="range"]') , function(slider, i){
           if (slider == elem) return;
           slider.value = 0;
         });
@@ -139,16 +139,18 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
     },false);
 
   });
-  
-  
+
+
   // color
   function changeColor(e){
     color = e.target.value;
     doIt();
   };
-  document.querySelector('input[type=color]').addEventListener('blur', changeColor, false);
-  document.querySelector('input[type=color]').addEventListener('focus', changeColor, false);
   
+  var elColor = document.querySelector('input[type="color"]');
+  elColor.addEventListener('blur', changeColor, false);
+  elColor.addEventListener('focus', changeColor, false);
+
   document.querySelector('input[type=checkbox]').addEventListener('change', function(e){
     wackyMode = e.target.checked;
   }, false);
@@ -160,14 +162,14 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
 
     offset = directionMap[direction];
 
-    var sliders = document.querySelectorAll('input[type=range]');
-    
+    var sliders = document.querySelectorAll('input[type="range"]');
+
     if (wackyMode){
       for (var j = 0; j < sliders.length; j++){
-        
+
         offset = directionMap[sliders[j].id.replace('len','')];
         var value = sliders[j].value;
-        
+
         for (var i = -1; ++i < value; ){
          string += color +  ' ' + (i+1) * offset.x + 'px ' + (i+1) * offset.y + 'px,';
         }
@@ -175,14 +177,14 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
     } else {
       for (var i = -1; ++i < length; ){
        string += color +  ' ' + (i+1) * offset.x + 'px ' + (i+1) * offset.y + 'px,';
-      }    
+      }
     }
-    
+
 
     string = string.slice(0,string.length-1);
 
     h1.style.textShadow = string;
-    
+
     document.querySelector('textarea').value = 'text-shadow: ' + string + ';';
 
   }
@@ -224,10 +226,10 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
       h = Math.round( h * 360);
       s = Math.round( s * 100);
       l = Math.round( l * 100);
-      
+
       return 'hsl(' + h + ',' + s + '%,' + l + '%)'; //[h, s, l]
   }
-  
+
   function hex2hsl(hex){
     hex = hex.replace('#','');
     var rgb = parseInt(hex, 16); // value is 1675421
@@ -235,13 +237,13 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
     var red   = (rgb >> 16) & 0xFF; // returns 255
     var green = (rgb >> 8) & 0xFF;  // 170
     var blue  = rgb & 0xFF;		// 221
-    
+
     return rgbToHsl(red,green,blue);
   }
-  
+
   </script>
 
-  
+
   <!-- Color Element -->
   <script src="html5widgets/js/jscolor/jscolor.js"></script>
 
@@ -251,14 +253,11 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
     <link rel="stylesheet" href="html5widgets/css/slider_ie.css" />
   <![endif]-->
   <script src="html5widgets/js/frequency-decoder.com/slider.js"></script>
-  
+
   <script src="html5widgets/js/EventHelpers.js"></script>
   <script src="html5widgets/js/html5Widgets.js"></script>
 
-  <script>var _gaq=[['_setAccount','UA-18857974-1'],['_trackPageview']];(function(d,t){
-  var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
-  g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)
-  }(document,'script'))</script>
+  <script>var _gaq=[['_setAccount','UA-18857974-1'],['_trackPageview']];(function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;g.src='//www.google-analytics.com/ga.js';s.parentNode.insertBefore(g,s)}(document,'script'))</script>
 
 </body>
-</html>​
+</html>
