@@ -156,7 +156,7 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
   elColor.addEventListener('blur', changeColor, false);
   elColor.addEventListener('focus', changeColor, false);
 
-  document.querySelector('input[type=checkbox]').addEventListener('change', function(e){
+  document.querySelector('input[type="checkbox"]').addEventListener('change', function(e){
     wackyMode = e.target.checked;
   }, false);
 
@@ -259,7 +259,7 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
   var RAINBOWZ = function(bool) {
 
     if (!bool) {
-      setShadow('')
+      doIt();
       return;
     }
 
@@ -295,7 +295,7 @@ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-
   <!-- Range Element -->
   <link rel="stylesheet" href="html5widgets/css/slider.css">
   <!--[if lte IE 6]>
-    <link rel="stylesheet" href="html5widgets/css/slider_ie.css" />
+    <link rel="stylesheet" href="html5widgets/css/slider_ie.css">
   <![endif]-->
   <script src="html5widgets/js/frequency-decoder.com/slider.js"></script>
 
