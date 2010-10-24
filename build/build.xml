@@ -260,6 +260,17 @@
       <targetfile/>
     </apply>
     <replace token="style.css" value="style-${build.number}.min.css" file="./${dir.publish}/${file.index}"/>
+    
+    <apply executable="java" parallel="false">
+      <fileset dir="./${dir.publish}/html5widgets/css/" includes="slider.css"/>
+      <arg line="-jar"/>
+      <arg path="./${dir.tools}/${tool.yuicompressor}"/>
+      <srcfile/>
+      <arg line="-o"/>
+      <mapper type="glob" from="slider.css" to="../${dir.publish}/html5widgets/css/slider-${build.number}.min.css"/>
+      <targetfile/>
+    </apply>
+    <replace token="slider.css" value="slider-${build.number}.min.css" file="./${dir.publish}/${file.index}"/>
     <!-- <delete file="./publish/css/style-${build.number}.css"/> -->
   </target>
   

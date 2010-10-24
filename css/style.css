@@ -234,7 +234,7 @@ button {  width: auto; overflow: visible; }
  	font-style: normal;
  }
 
-
+a { color: magenta!important;}
 html, body { height: 100%;}
 
  body { background: #999; text-align: center; font-family: 'Cooper', 'Cooper Black', 'Cooper Std', 'ballterminals'; background-image: -webkit-gradient(radial, 50% 0, 800, 50% 0, 0, from( rgba(255,255,255,0) ), to( rgba(255,255,255,0.5) )); }
