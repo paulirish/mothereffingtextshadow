@@ -225,11 +225,13 @@
 		<!-- 
 		<delete dir="./${dir.publish}/${dir.js.lib}/"/> 
 		<delete file="./${dir.publish}/${dir.js}/libs-${build.number}.js"/>
-    -->  
+    
 
 		<delete includeemptydirs="true">
 			<fileset dir="./${dir.publish}/${dir.js.libs}/" includes="*.js" excludes="*.min.js"/>
 		</delete>
+		
+		-->  
 	</target>
 	
 	<!-- JS, Delete concatenated libs file (only if concat.scripts and delete.unoptimized are defined) -->
@@ -274,6 +276,7 @@
     <!-- <delete file="./publish/css/style-${build.number}.css"/> -->
   </target>
   
+  
   <!--
                 IMAGES: png
   -->
@@ -283,18 +286,21 @@
       <arg value="-o7"/>
       <fileset dir="./${dir.publish}/${dir.images}">
         <exclude name="*.jpg"/>
+        <exclude name=".gitignore"/>
       </fileset>
     </apply>
     <apply executable="optipng" osfamily="mac">
       <arg value="-o7"/>
       <fileset dir="./${dir.publish}/${dir.images}">
         <exclude name="*.jpg"/>
+        <exclude name=".gitignore"/>
       </fileset>
     </apply>
     <apply executable="tools/optipng-0.6.4-exe/optipng.exe" osfamily="windows">
       <arg value="-o7"/>
       <fileset dir="./${dir.publish}/${dir.images}">
         <exclude name="*.jpg"/>
+        <exclude name=".gitignore"/>
       </fileset>
     </apply>
   </target>
@@ -352,6 +358,13 @@
     <replaceregexp match="jquery-(\d|\d(\.\d)+)\.js" replace="jquery-\1.min.js" file="./${dir.publish}/${file.index}" flags=""/>
     <!-- switch any google CDN reference to minified -->
     <replaceregexp match="(\d|\d(\.\d)+)\/jquery\.js" replace="\1/jquery.min.js" file="./${dir.publish}/${file.index}" flags=""/>
+   
+    <!-- switch modernizr to minified -->
+    <replace token="modernizr-1.6pre.js" value="modernizr-1.6pre.min.js" file="./${dir.publish}/${file.index}"/>
+   
+    <echo>kill off those versioning flags</echo>
+    <replaceregexp match='\?v=\d+">' replace='">' file="./${dir.publish}/${file.index}" flags=""/>
+   
    
   </target>
   
