@@ -221,10 +221,52 @@ button {  width: auto; overflow: visible; }
 
 
  /* Primary Styles
-    Author: 
+    Author: MEEEEEEE
  */
 
 
+
+ @font-face {
+ 	font-family: 'ballterminals';
+ 	src: url('WOODENNI-webfont.eot');
+ 	src: local('SMILEYFACE'), url('WOODENNI-webfont.woff') format('woff'), url('WOODENNI-webfont.ttf') format('truetype'), url('WOODENNI-webfont.svg#webfontfwuwarlQ') format('svg');
+ 	font-weight: normal;
+ 	font-style: normal;
+ }
+
+
+
+
+ body { background: #999; text-align: center; font-family: 'Cooper', 'Cooper Black', 'Cooper Std', 'ballterminals'; background-image: -webkit-gradient(radial, 50% 0, 800, 50% 0, 0, from( rgba(255,255,255,0) ), to( rgba(255,255,255,0.5) )); }
+ body{ height: 600px; width: 99%;}
+ h1 { margin: 200px  auto 0; max-width: 900px;  font-size: 90px;  color: fuchsia; text-align: center; }
+ fieldset { border: 0; margin: 0; padding: 0; width: 400px; height: 170px; position: absolute; left: 50%; top: 0px; margin-left: -200px;}
+ /* */
+ input[type='range'], .fd-slider { position: absolute !important; left: 50%; top: 80px; width: 100px;
+ /* */
+   -webkit-transform: rotate(45deg);
+   -moz-transform: rotate(45deg);
+   -o-transform: rotate(45deg);
+   transform: rotate(45deg);
+
+   -webkit-transform-origin: 0 50%;
+   -moz-transform-origin: 0 50%;
+   -o-transform-origin: 0 50%;
+   transform-origin: 0 50%;
+ /* */
+ }
+ input[type='range']:nth-child(2), #fd-slider-lenSW { -webkit-transform: rotate(135deg); -moz-transform: rotate(135deg); -o-transform: rotate(135deg); transform: rotate(135deg); }
+ input[type='range']:nth-child(3), #fd-slider-lenNW { -webkit-transform: rotate(225deg); -moz-transform: rotate(225deg); -o-transform: rotate(225deg); transform: rotate(225deg); }
+ input[type='range']:nth-child(4), #fd-slider-lenNE { -webkit-transform: rotate(-45deg); -moz-transform: rotate(-45deg); -o-transform: rotate(-45deg); transform: rotate(-45deg); }
+ /* */
+ input[type='color'], input.color { font-size: 1em; width: 10em; font-family: 'Cooper Std'; position: absolute; left: 0%; top: 40%;}
+
+ label { position: absolute; right: 50px; top: 40%; color: #666;  }
+ button { position: absolute; right: 50px; top: 60%; ;  }
+
+ body .fd-slider-inner { background: none!important; border: 0!important;}
+
+ textarea { font-family: Inconsolata, 'Lucida Console', Courier, monospace; font-size: 18px;  position: absolute; left: 50%; width: 500px; margin-left: -250px; top: 470px; height: 125px; background: rgba(0,0,0,.7); color: white;}
 
 
 
