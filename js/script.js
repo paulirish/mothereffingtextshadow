@@ -108,7 +108,7 @@ function doIt(){
   }
 
 
-  string = string.slice(0,string.length-1);
+  string = string.slice(0,string.length-2);
 
   setShadow(string);
 }
