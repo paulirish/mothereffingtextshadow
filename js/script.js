@@ -98,12 +98,12 @@ function doIt(){
       var value = sliders[j].value;
 
       for (var i = -1; ++i < value; ){
-       string += color +  ' ' + (i+1) * offset.x + 'px ' + (i+1) * offset.y + 'px,';
+       string += color +  ' ' + (i+1) * offset.x + 'px ' + (i+1) * offset.y + 'px, ';
       }
     }
   } else {
     for (var i = -1; ++i < length; ){
-     string += color +  ' ' + (i+1) * offset.x + 'px ' + (i+1) * offset.y + 'px,';
+     string += color +  ' ' + (i+1) * offset.x + 'px ' + (i+1) * offset.y + 'px, ';
     }
   }
 
