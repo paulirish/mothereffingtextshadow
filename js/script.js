@@ -87,7 +87,7 @@ function doIt(e){
 
   offset = directionMap[direction];
 
-  var sliders = document.querySelectorAll('input[type="range"]');
+  var sliders = document.querySelectorAll('input[id^="len"]');
 
 
   if ((e && !e.srcElement) || wackyMode){
@@ -197,6 +197,7 @@ buildPresets = function(){
       href          : '#',
       click         : function(){
         applyPreset( $(this).attr('data-preset')  );
+        return false;
       }
     }).wrap('<li>').parent().appendTo('ol');
     
