@@ -39,24 +39,25 @@ var directionMap = {
 var direction = 'SE';
 
 
+[].forEach.call( document.querySelectorAll('input[type="range"]') , function(elem, i){
 
-$('input[type="range"]').change(function(e){
+  elem.addEventListener('change',function(e){
 
-  // reset so we dont do multiple directions
-  // but only if its a manually triggered change
-  if (e.srcElement && !wackyMode){
-    [].forEach.call( document.querySelectorAll('input[type="range"]') , function(slider, i){
-      if (slider == e.target) return;
-      slider.value = 0;
-    });
-  }
+    // reset so we dont do multiple directions
+    if (!wackyMode){
+      [].forEach.call( document.querySelectorAll('input[type="range"]') , function(slider, i){
+        if (slider == elem) return;
+        slider.value = 0;
+      });
+    }
 
+    direction = elem.id.replace('len','');
 
-  direction = e.target.id.replace('len','');
+    length = e.target.value;
 
-  length = e.target.value;
-  //debugger;
-  doIt(e);
+    doIt();
+
+  },false);
 
 });
 
@@ -64,23 +65,24 @@ $('input[type="range"]').change(function(e){
 // color
 function changeColor(e){
   color = e.target.value;
-  doIt(e);
+  doIt();
 };
 
 var elColor = document.querySelector('input[type="color"]');
-$(elColor).bind('blur focus', changeColor);
+elColor.addEventListener('blur', changeColor, false);
+elColor.addEventListener('focus', changeColor, false);
 
 document.querySelector('input[type="checkbox"]').addEventListener('change', function(e){
   wackyMode = e.target.checked;
 }, false);
 
-$('button').click(function f(e){
+document.querySelector('button').addEventListener('click', function f(e){
    f.on = !f.on;
    e.target.innerHTML = f.on ? 'what does it mean?' : 'all the way';  
    RAINBOWZ(f.on);
-});
+}, false);
 
-function doIt(e){
+function doIt(){
 
   h1.style.textShadow = '';
   string = '';
@@ -89,8 +91,7 @@ function doIt(e){
 
   var sliders = document.querySelectorAll('input[type="range"]');
 
-
-  if ((e && !e.srcElement) || wackyMode){
+  if (wackyMode){
     for (var j = 0; j < sliders.length; j++){
 
       offset = directionMap[sliders[j].id.replace('len','')];
@@ -145,79 +146,10 @@ var RAINBOWZ = function(bool) {
 };
 
 
-$('.presets a').click(function(){
-
-  var name = window.prompt('what you wanna call it, bro?');
-  
-  var obj = {};  
-  $('input').each(function(i, elem){ 
-    obj[elem.name] = elem.value  
-  }); 
-  
-  var presets = JSON.parse(localStorage.getItem('mypresets')) || {};
-  presets[name] = obj;
-  
-  localStorage.setItem('mypresets', JSON.stringify(presets));
-  
-  buildPresets();
-  
-  return false;
-});
 
 
 
-applyPreset = function(preset){
-  
-  preset = JSON.parse(preset);
-  
-  $('input').each(function(i, elem){
-    
-    elem.value = preset[elem.name];
-    
-  }).change().blur();
 
-
-};
-
-
-
-buildPresets = function(){
-
-  $('ol').empty();
-  
-  var mypresets = JSON.parse(localStorage.getItem('mypresets'));
-
-  $.each(mypresets, function(name, preset){
-    
-    
-    
-    $('<a>',{
-      text          : name,
-      "data-preset" : JSON.stringify(preset),
-      href          : '#',
-      click         : function(){
-        applyPreset( $(this).attr('data-preset')  );
-      }
-    }).wrap('<li>').parent().appendTo('ol');
-    
-    
-    
-  });
-
-
-
-}
-
-$(function(){
-  
-  if (!Modernizr.localstorage){
-    $('.presetwrap').remove();
-    return;
-  }
-
-  
-  buildPresets();
-})
 
 
 
