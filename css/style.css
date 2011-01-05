@@ -263,6 +263,7 @@ html, body { height: 100%;}
 
  label { position: absolute; right: 50px; top: 40%; color: #666;  }
  button { position: absolute; right: 50px; top: 60%; ;  }
+ button + button { top: 75%;}
 
  body .fd-slider-inner { background: none!important; border: 0!important;}
 
