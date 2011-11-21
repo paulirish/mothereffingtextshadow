@@ -218,7 +218,7 @@ buildPresets = function(){
 
   var mypresets = JSON.parse(localStorage.getItem('mypresets'));
 
-  $.each(mypresets, function(name, preset){
+  $.each(mypresets || [], function(name, preset){
 
 
 
