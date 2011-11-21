@@ -1,4 +1,4 @@
-/* Author: 
+/* Author:
   ME, MOTHERFUCKER.
 
 */
@@ -76,13 +76,13 @@ document.querySelector('input[type="checkbox"]').addEventListener('change', func
 
 $('button:first').click(function f(e){
    f.on = !f.on;
-   e.target.innerHTML = f.on ? 'what does it mean?' : 'all the way';  
+   e.target.innerHTML = f.on ? 'what does it mean?' : 'all the way';
    RAINBOWZ(f.on);
 });
 
 $('button:last').click(function f(e){
    f.on = !f.on;
-   e.target.innerHTML = f.on ? 'nvm.' : '3D';  
+   e.target.innerHTML = f.on ? 'nvm.' : '3D';
    threeD(f.on);
 });
 
@@ -126,7 +126,7 @@ function setShadow(string){
   h1.style.textShadow = string;
 
   document.querySelector('textarea').value = 'text-shadow: ' + string + ';';
-  
+
 }
 
 
@@ -142,7 +142,7 @@ var RAINBOWZ = function(bool) {
 
   for ( var i = 1; i < maxCount; i++ ) {
     var normI = i / maxCount,
-        hue = normI * 360 * 6,
+        hue = Math.round( normI * 360 * 6 * 10 ) / 10 ,
         x = parseInt( Math.sin( normI * Math.PI * 2 * 2 )  * 60 );
 
     shadows += ', ' + x + 'px ' + i + 'px hsl(' + hue + ', 100%, 50%)'
@@ -154,11 +154,11 @@ var RAINBOWZ = function(bool) {
 
 // thx http://markdotto.com/playground/3d-text/
 var threeD = function(bool){
-  
+
   if (!bool) {
     doIt();
     return;
-  }                                         
+  }
   var shadows = '0 1px 0 #ccc, \
 0 2px 0 #c9c9c9, \
 0 3px 0 #bbb, \
@@ -172,39 +172,39 @@ var threeD = function(bool){
 0 10px 10px rgba(0,0,0,.2), \
 0 20px 20px rgba(0,0,0,.15)';
 
-  setShadow(shadows);                         
+  setShadow(shadows);
 }
 
 
 $('.presets a').click(function(){
 
   var name = window.prompt('what you wanna call it, bro?');
-  
-  var obj = {};  
-  $('input').each(function(i, elem){ 
-    obj[elem.name] = elem.value  
-  }); 
-  
+
+  var obj = {};
+  $('input').each(function(i, elem){
+    obj[elem.name] = elem.value
+  });
+
   var presets = JSON.parse(localStorage.getItem('mypresets')) || {};
   presets[name] = obj;
-  
+
   localStorage.setItem('mypresets', JSON.stringify(presets));
-  
+
   buildPresets();
-  
+
   return false;
 });
 
 
 
 applyPreset = function(preset){
-  
+
   preset = JSON.parse(preset);
-  
+
   $('input').each(function(i, elem){
-    
+
     elem.value = preset[elem.name];
-    
+
   }).change().blur();
 
 
@@ -215,13 +215,13 @@ applyPreset = function(preset){
 buildPresets = function(){
 
   $('ol').empty();
-  
+
   var mypresets = JSON.parse(localStorage.getItem('mypresets'));
 
   $.each(mypresets, function(name, preset){
-    
-    
-    
+
+
+
     $('<a>',{
       text          : name,
       "data-preset" : JSON.stringify(preset),
@@ -231,9 +231,9 @@ buildPresets = function(){
         return false;
       }
     }).wrap('<li>').parent().appendTo('ol');
-    
-    
-    
+
+
+
   });
 
 
@@ -241,13 +241,13 @@ buildPresets = function(){
 }
 
 $(function(){
-  
+
   if (!Modernizr.localstorage){
     $('.presetwrap').remove();
     return;
   }
 
-  
+
   buildPresets();
 })
 
