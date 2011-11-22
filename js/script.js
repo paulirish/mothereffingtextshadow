@@ -1,6 +1,10 @@
 /* Author:
-  ME, MOTHERFUCKER.
+  ME.
+  and david desandro (for all the way)
+  and markdotto (for 3d)
 
+
+  YAH BITCHEZ
 */
 
 
