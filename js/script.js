@@ -12,7 +12,7 @@ var h1 = document.querySelector('h1');
 
 
 // tell unsupporting browsers to FUCK OFF
-if (!'textShadow' in document.body.style){
+if (!('textShadow' in document.body.style)) {
   document.querySelector('fieldset').style.display = 'none';
   document.querySelector('textarea').style.display = 'none';
   h1.style.marginTop = 0;
